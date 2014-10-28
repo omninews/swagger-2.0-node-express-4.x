@@ -1,0 +1,23 @@
+{
+  "name": "swagger-2.0-node-express-4.x",
+  "version": "0.0.0",
+  "description": "Generate swagger 2.0 spec based on express 4.x routes, and validate express routes based on swagger specs",
+  "main": "lib/index.js",
+  "repository": "https://github.com/omninews/swagger-2.0-node-express-4.x.git",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "swagger",
+    "express"
+  ],
+  "author": "Omni",
+  "contributors": [{
+    "name" : "Andreas Hultgren",
+    "email" : "andreas@omni.se"
+  }],
+  "license": "ISC",
+  "peerDependencies": {
+    "express": "^4.9.7"
+  }
+}
