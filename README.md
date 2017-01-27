@@ -19,9 +19,17 @@ var Swagger = require('swagger-2.0-node-express-4.x');
 var docs = new Swagger();
 var schemas = require('some/schema/definitions');
 var express = require('express');
+var expressValidator = require('express-validator');
+var bodyParser = require('body-parser');
 var app = express();
 var Router = express.Router;
 var router = new Router();
+
+router.use(expressValidator({
+  customValidators: Swagger.customValidators
+}));
+
+router.use(bodyParser.json());
 
 router.route('/resource/:id')
 .spec({
