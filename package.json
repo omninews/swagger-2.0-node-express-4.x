@@ -20,6 +20,8 @@
   ],
   "license": "ISC",
   "peerDependencies": {
-    "express": "^4.9.7"
+    "express": "^4.9.7",
+    "express-validator": "^2.6.0",
+    "body-parser": "^1.16.0"
   }
 }

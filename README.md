@@ -19,35 +19,46 @@ var Swagger = require('swagger-2.0-node-express-4.x');
 var docs = new Swagger();
 var schemas = require('some/schema/definitions');
 var express = require('express');
+var expressValidator = require('express-validator');
+var bodyParser = require('body-parser');
+
 var app = express();
 var Router = express.Router;
 var router = new Router();
 
-router.route('/resource/:id')
-.spec({
-  get: {
-    summary: 'A resource',
-    parameters: [{
-      name: 'id',
-      description: 'An id',
-      in: 'path',
-      type: 'string',
+router.use(expressValidator({
+  customValidators: Swagger.customValidators
+}));
+
+router.use(bodyParser.json());
+
+router
+  .route('/resource/:id')
+  .spec({
+    get: {
+      summary: 'A resource',
+      parameters: [{
+        name: 'id',
+        description: 'An id',
+        in: 'path',
+        type: 'string',
+        // ...
+      }],
+      resources: {
+        200: {}
+      }
+    },
+    post: {
       // ...
-    }],
-    resources: {
-      200: {}
     }
-  },
-  post: {
-    // ...
-  }
-})
-.validate()
-.get(function (req, res) {
-  res.send({ such: 'data' });
-});
+  })
+  .validate()
+  .get(function (req, res) {
+    res.send({ such: 'data' });
+  });
 
 app.use(router);
+
 docs
   .addInfo(/* swagger info */)
   .addDefinitions(schemas)
@@ -57,7 +68,7 @@ app.get('/swagger.json', function (req, res) {
   res.json(docs.generateDoc());
 });
 
-// app.listen and stuff
+app.listen(3000);
 ```
 
 This will render a swagger file at /swagger.json.
